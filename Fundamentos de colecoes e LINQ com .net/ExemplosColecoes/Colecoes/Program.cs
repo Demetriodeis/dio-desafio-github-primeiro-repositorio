@@ -106,16 +106,7 @@ namespace Colecoes
 
         static void Main(string[] args)
         {
-            OperacoesArray op = new OperacoesArray();
-
-            int[] array = new int[5]{1,5,2,11,15};
-            int[] arrayCopy = new int[10];
-
-            WriteLine("Array original");
-            op.ImprimirArray(array);
-            op.Copiar(ref array, ref arrayCopy);
-            WriteLine("Array copiado");
-            op.ImprimirArray(arrayCopy);
+            
         }
     }   
     
