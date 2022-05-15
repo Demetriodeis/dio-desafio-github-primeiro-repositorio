@@ -35,5 +35,20 @@ namespace Colecoes.Helper
         {
             Array.Copy(array, arrayDestino, array.Length);
         }
+
+        public bool Existe(int[] array, int valor)
+        {
+            return Array.Exists(array, element => element == valor);
+        }
+
+        public bool TodosMaiorQue(int[] array, int valor)
+        {
+            return Array.TrueForAll(array, element => element > valor);
+        }
+
+        public int ObterValor(int[] array, int valor)
+        {
+            return Array.Find(array, element => element == valor);
+        }
     }
 }

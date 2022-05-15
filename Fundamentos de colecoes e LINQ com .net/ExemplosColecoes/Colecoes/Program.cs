@@ -91,6 +91,60 @@ namespace Colecoes
             op.ImprimirArray(arrayCopy);
         }
 
+        static void DemoArrayValueExists()
+        {
+            OperacoesArray op = new OperacoesArray();
+
+            int[] array = new int[5]{1,5,2,11,15};
+
+            bool existe = op.Existe(array, 20);
+
+            if(existe)
+            {
+                WriteLine($"Encontrei o valor");
+            }
+            else
+            {
+                WriteLine("Não encontrei o valor");
+            }
+        }
+
+        static void DemoArrayMaiorQuer()
+        {
+            OperacoesArray op = new OperacoesArray();
+
+            int[] array = new int[5]{-1,5,2,11,15};
+
+            bool maiorQuer = op.TodosMaiorQue(array, 0);
+
+            if(maiorQuer)
+            {
+                WriteLine($"Todos os valores são maior que 0");
+            }
+            else
+            {
+                WriteLine($"Existe valores que não são maiores que 0");
+            }
+        }
+
+        static void DemoArrayFind()
+        {
+            OperacoesArray op = new OperacoesArray();
+
+            int[] array = new int[5]{-1,5,2,11,15};
+
+            int valor = op.ObterValor(array, 21);
+
+            if(valor > 0)
+            {
+                WriteLine($"Encontrei o valor");
+            }
+            else
+            {
+                WriteLine($"Não encontrei o valor");
+            }
+        }
+
         static void CustomerError()
         {
             try
@@ -106,7 +160,7 @@ namespace Colecoes
 
         static void Main(string[] args)
         {
-            
+           
         }
     }   
     
