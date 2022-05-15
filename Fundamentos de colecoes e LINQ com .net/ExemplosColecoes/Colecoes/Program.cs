@@ -66,6 +66,31 @@ namespace Colecoes
             op.ImprimirArray(array);
         }
 
+        static void DemoArraySort()
+        {
+            OperacoesArray op = new OperacoesArray();
+            int[] array = new int[5]{1,5,2,11,15};
+            WriteLine("Array original");
+            op.ImprimirArray(array);
+            op.Ordernar(ref array);
+            WriteLine("Array ordenado");
+            op.ImprimirArray(array);
+        }
+
+        static void DemoArrayCopy()
+        {
+            OperacoesArray op = new OperacoesArray();
+
+            int[] array = new int[5]{1,5,2,11,15};
+            int[] arrayCopy = new int[10];
+
+            WriteLine("Array original");
+            op.ImprimirArray(array);
+            op.Copiar(ref array, ref arrayCopy);
+            WriteLine("Array copiado");
+            op.ImprimirArray(arrayCopy);
+        }
+
         static void CustomerError()
         {
             try
@@ -81,7 +106,16 @@ namespace Colecoes
 
         static void Main(string[] args)
         {
-           
+            OperacoesArray op = new OperacoesArray();
+
+            int[] array = new int[5]{1,5,2,11,15};
+            int[] arrayCopy = new int[10];
+
+            WriteLine("Array original");
+            op.ImprimirArray(array);
+            op.Copiar(ref array, ref arrayCopy);
+            WriteLine("Array copiado");
+            op.ImprimirArray(arrayCopy);
         }
     }   
     
