@@ -1,6 +1,8 @@
 ﻿using System;
 using Colecoes.Helper;
+using System.Collections.Generic;
 using static System.Console;
+using System.Linq;
 
 namespace Colecoes
 {
@@ -145,6 +147,129 @@ namespace Colecoes
             }
         }
 
+        static void DemoArrayFindIndex()
+        {
+            OperacoesArray op = new OperacoesArray();
+
+            int[] array = new int[5]{-1,5,2,11,15};
+
+            int indice = op.ObterIndice(array, 11);
+
+            if(indice > -1)
+            {
+                WriteLine($"Encontrei o valor do meu indice {indice}");
+            }
+            else
+            {
+                WriteLine($"Não encontrei o valor");
+            }
+        }
+
+        static void DemoArrayRedimensinamento()
+        {
+            OperacoesArray op = new OperacoesArray();
+            int[] array = new int[5]{-1,5,2,11,15};
+
+            WriteLine($"Capacidade atual do array {array.Length}");
+
+            op.RedimencionarArray(ref array, array.Length * 2);
+
+            WriteLine($"Capacidade atual do array após o rendimencionar {array.Length}");
+           
+            string[] arrayString = op.ConverterParaArrayString(array);
+            WriteLine("Array de string convertido");
+            WriteLine(string.Join(", ", arrayString));
+        }
+
+        static void DemoColecoesGenericaColecoes()
+        {
+            OperacoesListas opLista = new OperacoesListas();
+            List<string> estados = new List<string>();
+            string[] estadosArray = new string[2]{"PA", "RR"};
+
+            estados.Add("SP");
+            estados.Add("RJ");
+            estados.Add("BA");
+            estados.Add("SC");
+
+            WriteLine($"Quantidade de elementos na lista: {estados.Count}");
+            opLista.ImprimirListaString(estados);
+
+            WriteLine("Removendo o elemento");
+            estados.Remove("BA");
+
+            opLista.ImprimirListaString(estados);
+
+            WriteLine("Adicionando uma coleção");
+            estados.AddRange(estadosArray);
+
+            opLista.ImprimirListaString(estados);
+
+            WriteLine("Adicionando por indice");
+            estados.Insert(1, "MG");
+            
+            opLista.ImprimirListaString(estados);
+        }
+
+        static void DemoColecoesEspecificasFila()
+        {
+            Queue<string> fila = new Queue<string>();
+
+            fila.Enqueue("Demetrio");
+            fila.Enqueue("Alessandra");
+            fila.Enqueue("Nelcina");
+
+            WriteLine($"Pessoas na fila: {fila.Count}");
+            while(fila.Count > 0)
+            {
+                WriteLine($"Vez de: {fila.Peek()}");
+                WriteLine($"{fila.Dequeue()} atendido");
+            }
+            WriteLine($"Pessoas na fila: {fila.Count}");
+        }
+
+        static void DemoColecoesEspecificasPilha()
+        {
+            Stack<string> pilha = new Stack<string>();
+            
+            pilha.Push(".NET");
+            pilha.Push("DDD");
+            pilha.Push("Codigo limpo");
+
+            WriteLine($"Livros na pilha: {pilha.Count}");
+            while(pilha.Count > 0)
+            {
+                WriteLine($"Próximo livro para a leitura: {pilha.Peek()}");
+                WriteLine($"{pilha.Pop()} lido com sucesso");
+            }
+            WriteLine($"Livros na pilha: {pilha.Count}");
+        }
+
+        static void DemoDictonary()
+        {
+            Dictionary<string, string> estados = new Dictionary<string, string>();
+
+            estados.Add("BA", "Bahia");
+            estados.Add("SP", "São Paulo");
+            estados.Add("RJ", "Rio de Janeiro");
+
+            foreach (KeyValuePair<string, string> item in estados)
+            {
+                WriteLine($"Chave:{item.Key}, valor: {item.Value}");
+            }
+
+            var valorProcurado = "SC";
+
+            if(estados.TryGetValue(valorProcurado, out string valorEncontrado))
+            {
+                WriteLine(valorEncontrado);
+            }
+            else
+            {
+                WriteLine("Valor não encontrado");
+            }
+        }
+
         static void CustomerError()
         {
             try
@@ -160,8 +285,31 @@ namespace Colecoes
 
         static void Main(string[] args)
         {
-           
+            int[] arrayNumeros = new int[10] {5, 20,19,4,100,1,8,4,19,100};
+
+            var minimo = arrayNumeros.Min();
+            var maximo = arrayNumeros.Max();
+            var medio = arrayNumeros.Average();
+            var soma = arrayNumeros.Sum();
+            var distinct = arrayNumeros.Distinct().ToArray();
+
+            WriteLine($"Minimo: {minimo}");
+            WriteLine($"Maximo: {maximo}");
+            WriteLine($"Medio: {medio}");
+            WriteLine($"soma: {soma}");
+            WriteLine($"distinct: {string.Join(", ", distinct)}");
+
+            var numerosParesQuery =
+                from num in arrayNumeros
+                where num % 2 == 0
+                orderby num
+                select num;
+
+            var numerosParesMetodos = arrayNumeros.Where(x => x % 2 == 0).OrderBy(x => x).ToList();
+
+            WriteLine($"Numeros paredes query:{string.Join(", ", numerosParesQuery)}");
+            WriteLine($"Numeros paredes Method:{string.Join(", ", numerosParesMetodos)} ");
         }
-    }   
+    }
     
 }
